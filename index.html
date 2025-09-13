@@ -11,8 +11,8 @@
       --card:#ffffff;
       --text:#222;
       --muted:#6b7280;
-      --primary:#0a66c2;   /* LinkedIn blue */
-      --accent:#22c55e;    /* green accent */
+      --primary:#0a66c2;
+      --accent:#22c55e;
       --shadow:0 10px 20px rgba(0,0,0,0.06);
       --radius:14px;
       --chip:#eef2ff;
@@ -30,7 +30,7 @@
     a:hover{text-decoration:underline}
     header{
       position:relative;
-      padding:64px 24px 32px;
+      padding:48px 12px 24px;
       text-align:center;
       overflow:hidden;
       background:
@@ -45,7 +45,19 @@
       gap: 24px;
       align-items: center;
     }
-
+    @media (max-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+      }
+      .hero-info {
+        text-align: center;
+      }
+      .hero-actions {
+        justify-self: center;
+      }
+    }
     .profile-img {
       width: 100px;
       height: 100px;
@@ -54,12 +66,11 @@
       box-shadow: var(--shadow);
       border: 2px solid var(--card);
       display: block;
+      margin: 0 auto;
     }
-
     .hero-info {
       text-align: left;
     }
-
     .hero-actions {
       justify-self: end;
     }
@@ -86,6 +97,7 @@
       color:white; border-radius:10px;
       border:none; box-shadow:var(--shadow);
       font-weight:600;
+      font-size:16px;
     }
     .btn.secondary{ background:#0f172a; }
     main{
@@ -94,6 +106,22 @@
       padding:0 24px;
       display:grid;
       gap:22px;
+    }
+    @media (max-width: 700px) {
+      main {
+        padding:0 8px;
+        margin:16px auto 32px;
+        gap:16px;
+      }
+      section {
+        padding:16px;
+      }
+      .name {
+        font-size:28px;
+      }
+      .tag {
+        font-size:15px;
+      }
     }
     section{
       background:var(--card);
@@ -115,6 +143,12 @@
     .grid{
       display:grid; gap:16px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap:12px;
+      }
     }
     .card{
       background:linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
@@ -141,9 +175,49 @@
       background:#f9fafb; border:1px solid #eef0f4;
       padding:8px 12px; border-radius:10px; font-weight:600; font-size:13px
     }
+    @media (max-width: 700px) {
+      .skill-badges {
+        gap:7px;
+      }
+      .skill {
+        font-size:12px;
+        padding:7px 10px;
+      }
+    }
+    /* Responsive images/videos in experience section */
+    .exp-media-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .exp-media-row img,
+    .exp-media-row video {
+      height:200px;
+      border-radius:8px;
+      box-shadow: var(--shadow);
+      max-width: 100%;
+      width: auto;
+    }
+    @media (max-width: 700px) {
+      .exp-media-row img,
+      .exp-media-row video {
+        height:140px;
+      }
+      .exp-media-row {
+        gap:8px;
+      }
+    }
     footer{
       text-align:center; color:var(--muted);
       padding:28px 16px 56px;
+      font-size:15px;
+    }
+    @media (max-width: 700px) {
+      footer {
+        padding:16px 8px 32px;
+        font-size:13px;
+      }
     }
   </style>
 </head>
@@ -172,7 +246,7 @@
       <h2>🎓 Education</h2>
       <div class="item">
         <h3>
-          <img src="images/NYCU.png" alt="NYCU logo" style="height:45px; vertical-align:middle; margin-right:0px;" />
+          <img src="images/NYCU.png" alt="NYCU logo" style="height:45px; vertical-align:middle; margin-right:0px; max-width:100%;" />
           National Yang Ming Chiao Tung University
         </h3>
         <ul class="meta">
@@ -180,7 +254,7 @@
         </ul></div>
       <div class="item">
         <h3>
-          <img src="images/RMIT.png" alt="RMIT logo" style="height:40px; vertical-align:middle; margin-right:5px;" />
+          <img src="images/RMIT.png" alt="RMIT logo" style="height:40px; vertical-align:middle; margin-right:5px; max-width:100%;" />
           Royal Melbourne Institute of Technology University
         </h3>
         <ul class="meta">
@@ -203,7 +277,7 @@
             Product Development Engineer
         </h3>
         <div class="meta">Intel Corporation • Jul 2021 – Jul 2025</div>
-        <ul>
+        <ul></ul>
           <li>Developed C# test programs for high volume production environments, integrating big data analysis to optimize product performance and support data-driven decision-making. Validated AI applications for accuracy and reliability in manufacturing workflows. Invented multiple cost-saving test methodologies that significantly reduced expenses while maintaining high product quality.</li>
         </ul>
       </div>
@@ -213,13 +287,13 @@
         <ul>
           <li>Engineered a solar panel cleaning robot from concept to deployment (fullstack, individual contributor), encompassing 3D CAD design, hardware system integration, and development of embedded control software. Non-commercial project; development halted due to suspended funding.</li>
         </ul>
-        <div style="display: flex; gap: 16px; margin-top: 10px;">
-          <img src="images/cleaning_bot_1.jpeg" alt="Solar cleaning bot 1" style="height:200px; border-radius:8px; box-shadow: var(--shadow);" />
-          <img src="images/cleaning_bot_2.jpg" alt="Solar cleaning bot 2" style="height:200px; border-radius:8px; box-shadow: var(--shadow);" />
+        <div class="exp-media-row">
+          <img src="images/cleaning_bot_1.jpeg" alt="Solar cleaning bot 1" />
+          <img src="images/cleaning_bot_2.jpg" alt="Solar cleaning bot 2" />
         </div>
-        <div style="display: flex; gap: 16px; margin-top: 10px;">
-          <video src="images/solar_bot_2.mp4" controls style="height:200px; border-radius:8px; box-shadow: var(--shadow);"></video>
-          <video src="images/solar_bot_3.mp4" controls style="height:200px; border-radius:8px; box-shadow: var(--shadow);"></video>
+        <div class="exp-media-row">
+          <video src="images/solar_bot_2.mp4" controls></video>
+          <video src="images/solar_bot_3.mp4" controls></video>
         </div>
       </div>
       <div class="item">
@@ -332,4 +406,4 @@
     © 2025 Hieu Huynh • Portfolio
   </footer>
 </body>
-</html>
+</html></div>
